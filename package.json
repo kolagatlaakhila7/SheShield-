@@ -1,0 +1,12 @@
+{
+  "name": "sheshield-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SheShield online safety assistant hackathon prototype",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": { "node": ">=18" }
+}
