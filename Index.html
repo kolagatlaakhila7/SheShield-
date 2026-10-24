@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#4c2b88"><title>SheShield — Online Safety Assistant</title>
+<link rel="stylesheet" href="/styles.css"><script defer src="/app.js"></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#" aria-label="SheShield home"><span class="brandmark">✦</span><span><b>SheShield</b><small>Online safety assistant</small></span></a><div class="top-right"><span class="status-dot"></span><span>Private demo workspace</span><button id="langToggle" class="ghost small">తెలుగు</button></div></header>
+<main class="shell">
+<section class="welcome">
+ <div class="welcome-copy"><div class="eyebrow">YOU DESERVE TO FEEL SAFE ONLINE</div><h1>Turn uncertainty into<br><span>a clear next step.</span></h1><p>Review concerning messages, keep an organized incident record, prepare a complaint draft, and check evidence file integrity.</p><div class="welcome-actions"><a class="button light" href="#screening">Check a message <span>↘</span></a><span class="micro">No account needed for this demo</span></div></div>
+ <div class="shield-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="shield">✓</div><div class="float-card"><span class="tiny-check">✓</span><span><b>Your next step</b><small>One step at a time</small></span></div></div>
+</section>
+<div class="safety-banner"><span class="banner-icon">♥</span><p><b>You are not to blame for someone else's harassment.</b><br><span>If you are in immediate danger, contact local emergency services or someone you trust. SheShield is not an emergency service.</span></p><button id="dismissBanner" class="icon-button" aria-label="Dismiss safety notice">×</button></div>
+<nav class="tabs" aria-label="Main sections"><a href="#screening" class="active">01 <span>Screen</span></a><a href="#incidents">02 <span>Incident records</span></a><a href="#evidence">03 <span>Evidence tools</span></a><a href="#reporting">04 <span>Get help</span></a></nav>
+<section class="section-grid">
+<article class="panel" id="screening"><div class="panel-head"><div><span class="section-tag">01 / MESSAGE REVIEW</span><h2>Check warning signs</h2><p>Screen text for common signals with an explainable, rule-based check.</p></div><span class="panel-icon">⌕</span></div>
+<label for="message">Message or incident text</label><textarea id="message" rows="5" maxlength="8000" placeholder="Paste a message here. Use fictional text for demos; remove passwords, OTPs, and unnecessary personal details."></textarea>
+<div class="field-row"><div class="field grow"><label for="incidentType">Incident type (optional)</label><select id="incidentType"><option value="">Choose if known</option><option>Repeated unwanted contact</option><option>Threats or intimidation</option><option>Impersonation / fake profile</option><option>Money demand / sextortion concern</option><option>Suspicious link or scam</option><option>Other</option></select></div><div class="field counter-wrap"><span id="charCount">0 / 8000</span></div></div>
+<div class="button-row"><button id="screenBtn" class="button primary">Review message <span>→</span></button><button id="clearBtn" class="button outline">Clear</button></div><div id="screenResult" class="result-box hidden" aria-live="polite"></div><p class="footnote"><span>ⓘ</span> A low warning level does not mean a message is safe. Context matters.</p></article>
+<article class="panel" id="incidents"><div class="panel-head"><div><span class="section-tag">02 / INCIDENT RECORD</span><h2>Keep details organized</h2><p>Create a structured record you can review, download, and remove.</p></div><span class="panel-icon">▤</span></div>
+<form id="incidentForm">
+<div class="field-row"><div class="field grow"><label for="date">Date and approximate time</label><input id="date" type="datetime-local"></div><div class="field grow"><label for="platform">Platform / app</label><input id="platform" maxlength="120" placeholder="e.g. Instagram"></div></div>
+<label for="account">Account name or profile link <span class="optional">(optional)</span></label><input id="account" maxlength="300" placeholder="Relevant account only; avoid your own private details">
+<label for="description">What happened?</label><textarea id="description" rows="4" maxlength="8000" placeholder="Describe events factually, including dates and repeated behaviour."></textarea>
+<label for="requestedHelp">What help do you need? <span class="optional">(optional)</span></label><input id="requestedHelp" maxlength="1000" placeholder="e.g. account review, takedown, safety guidance">
+<div class="button-row"><button class="button primary" type="submit">Save incident <span>＋</span></button><button class="button outline" type="button" id="draftBtn">Prepare complaint</button></div><div id="incidentNotice" class="inline-notice hidden" aria-live="polite"></div>
+</form>
+<div class="saved-head"><b>Saved incident records</b><button class="text-button" id="refreshIncidents">Refresh ↻</button></div><div id="incidentList" class="incident-list"><div class="empty">Loading saved records…</div></div>
+</article>
+<article class="panel" id="evidence"><div class="panel-head"><div><span class="section-tag">03 / EVIDENCE INTEGRITY</span><h2>Check a file's fingerprint</h2><p>SHA-256 can help you detect whether file contents change after a hash is recorded.</p></div><span class="panel-icon">⌘</span></div>
+<div class="upload-box"><div class="upload-icon">↑</div><b>Select an evidence file</b><p>Processing happens in your browser; file contents are not uploaded to this server.</p><input type="file" id="evidenceFile"><button class="button primary" id="hashBtn">Calculate SHA-256</button></div><div id="hashResult" class="result-box hidden" aria-live="polite"></div>
+<label for="savedHash">Previously recorded SHA-256 hash</label><input id="savedHash" spellcheck="false" autocomplete="off" placeholder="Paste a saved 64-character hash"><div class="button-row"><button class="button outline" id="compareHashBtn">Compare hash</button><button class="button outline" id="copyHashBtn">Copy current hash</button></div><div id="compareResult" class="inline-notice hidden" aria-live="polite"></div><p class="footnote"><span>ⓘ</span> A matching hash does not prove authenticity, authorship, completeness, or legal admissibility.</p></article>
